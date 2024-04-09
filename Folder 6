@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Path to the directory you want to clean
+directory="/path/to/your/directory"
+
+# Disk usage threshold in percentage
+threshold=90
+
+# Function to delete files older than 30 days
+delete_old_files() {
+    find "$directory" -type f -mtime +30 -delete
+}
+
+# Function to check disk usage
+check_disk_usage() {
+    current_usage=$(df -h "$directory" | awk 'NR==2 { print $5 }' | cut -d'%' -f1)
+    if [ "$current_usage" -gt "$threshold" ]; then
+        echo "Disk usage is $current_usage%. Deleting old files..."
+        delete_old_files
+    else
+        echo "Disk usage is $current_usage%. No action required."
+    fi
+}
+
+# Main execution
+check_disk_usage
