@@ -12,5 +12,4 @@ Folder 5 - Git Repository Backup Script
 
 Folder 6 - Script to automatically delete the files older than 30 days and maintain space upto 60%
 
-Folder 7 - AWS S3 Event Triggering
 
